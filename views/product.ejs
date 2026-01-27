@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Products</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Segoe UI", Arial, sans-serif;
+    }
+
+    body {
+      min-height: 100vh;
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      padding: 30px;
+    }
+
+    .top-bar {
+      max-width: 1200px;
+      margin: auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 25px;
+    }
+
+    .top-bar h2 {
+      color: #ffffff;
+    }
+
+    .top-bar a {
+      text-decoration: none;
+      background: #ffffff;
+      color: #667eea;
+      padding: 10px 16px;
+      border-radius: 8px;
+      font-weight: 600;
+      margin-left: 10px;
+      transition: 0.3s;
+    }
+
+    .top-bar a:hover {
+      background: #eeeeee;
+    }
+
+    .grid {
+      max-width: 1200px;
+      margin: auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 25px;
+    }
+
+    .card {
+      background: #ffffff;
+      border-radius: 14px;
+      padding: 18px;
+      text-align: center;
+      box-shadow: 0 12px 25px rgba(0,0,0,0.18);
+      transition: 0.3s;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+    }
+
+    .card img {
+  width: 100%;
+  height: 180px;
+  object-fit: contain;
+  background: #f5f5f5;
+  padding: 10px;
+  border-radius: 10px;
+  margin-bottom: 12px;
+}
+
+
+
+    .card h3 {
+      font-size: 18px;
+      color: #333333;
+      margin-bottom: 6px;
+    }
+
+    .card p {
+      font-size: 15px;
+      color: #666666;
+      margin-bottom: 12px;
+    }
+
+    .card .btn {
+      display: block;
+      text-decoration: none;
+      padding: 10px;
+      margin-top: 8px;
+      border-radius: 8px;
+      font-weight: 600;
+      transition: 0.3s;
+    }
+
+    .edit {
+      background: #ff9800;
+      color: #ffffff;
+    }
+
+    .delete {
+      background: #f44336;
+      color: #ffffff;
+    }
+
+    .cart {
+      background: #667eea;
+      color: #ffffff;
+    }
+
+    .card .btn:hover {
+      opacity: 0.9;
+    }
+  </style>
+
+</head>
+<body>
+
+  <div class="top-bar">
+    <h2>Product Store</h2>
+    <div>
+      <a href="/add-product">Add Product</a>
+      <a href="/cart">View Cart</a>
+    </div>
+  </div>
+
+  <div class="grid">
+    <% products.forEach(p => { %>
+      <div class="card">
+        <img src="<%= p.image %>" alt="Product Image">
+
+        <h3><%= p.name %></h3>
+        <p>Price: ₹ <%= p.price %></p>
+
+        <a href="/edit-product/<%= p._id %>" class="btn edit">Edit</a>
+        <a href="/delete-product/<%= p._id %>" class="btn delete" onclick="return confirm('Delete product?')">Delete</a>
+        <a href="/add-to-cart/<%= p._id %>" class="btn cart">Add to Cart</a>
+      </div>
+    <% }) %>
+  </div>
+
+</body>
+</html>
